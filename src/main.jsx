@@ -7,13 +7,14 @@ import {
 } from "react-router-dom";
 import App from './App.jsx'
 import './index.css'
+import Header from './components/header/header.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: 
     <div>
-      <div>header</div>
+      <Header />
         <Outlet />
       <div>foooter</div>
     </div>,
