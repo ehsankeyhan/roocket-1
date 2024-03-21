@@ -5,9 +5,12 @@ import {
   RouterProvider,
   Outlet
 } from "react-router-dom";
-import App from './App.jsx'
 import './index.css'
 import Header from './components/header/header.jsx';
+import Home from './routes/home.jsx';
+import Footer from './components/footer/footer';
+import Posts from './routes/posts';
+import AboutUS from './routes/aboutUS';
 
 const router = createBrowserRouter([
   {
@@ -15,23 +18,25 @@ const router = createBrowserRouter([
     element: 
     <div>
       <Header />
-        <Outlet />
-      <div>foooter</div>
+        <div className='m-20'>
+          <Outlet />
+        </div>
+      <Footer />
     </div>,
     errorElement: <div>error</div>,
 
     children: [
       {
         path: "/",
-        element: <div>main</div>,
+        element: <Home />,
       },
       {
-        path: "posts",
-        element: <div>posts</div>,
+        path: "blogs",
+        element: <Posts />,
       },
       {
         path: "aboutUs",
-        element: <div>about us</div>,
+        element: <AboutUS />,
       },
     ],
   },
