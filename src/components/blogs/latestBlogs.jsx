@@ -21,7 +21,7 @@ export default function LatestBlogs() {
   return (
     <div className=''>
         <div className='flex justify-between items-center'>
-            <p className=' text-left font-extrabold text-3xl mb-10'>LatestBlogs</p>
+            <h2 className=' text-left font-extrabold text-3xl mb-10'>LatestBlogs</h2>
             <a href={`/blogs`}className='text-blue-500 cursor-pointer'>See All</a>
         </div>
         <div className='relative'>

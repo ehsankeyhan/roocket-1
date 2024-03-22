@@ -9,7 +9,7 @@ export default function AllBlogs() {
 
   return (
     <div className=''>
-        <p className=' text-left font-extrabold text-3xl mb-10'>Blogs</p>
+        <h2 className=' text-left font-extrabold text-3xl mb-10'>Blogs</h2>
         <div className='grid grid-cols-4 gap-x-12 gap-y-20'>
             {blogs?(blogs.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map((item,index)=>(
                 <BlogsItem blog={item} index={index} key={index}/>
