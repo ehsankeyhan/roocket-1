@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Navigation, Virtual } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import BlogsItem from './blogsItem'
@@ -10,26 +10,13 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import BlogsItemLoading from './blogsItemLoading';
 import ShowMore from './showMore';
+import useBlogsData from '../../hooks/useBlogsData';
 
 
 export default function LatestBlogs() {
 
-    const [blogs , setBlogs] = useState(null)
+    const blogs = useBlogsData()
 
-    
-    useEffect(()=>{
-        
-        const fetchData = async ()=>{
-            try {
-                let res = await fetch ('https://65f7f726b4f842e808867f20.mockapi.io/rocket-1/api/blogs')
-                let data = await res.json()
-                setBlogs(data)
-            } catch (error) {
-                console.log(error);   
-            }
-        }
-        fetchData()
-    },[])
 
   return (
     <div className=''>
