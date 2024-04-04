@@ -1,21 +1,25 @@
 import { useEffect, useState } from 'react'
 
-export default function useBlogsData() {
+export default function useBlogsData(url) {
     const [blogs , setBlogs] = useState(null)
+    const [isLoading , setIsLoading] = useState(true)
+    const [error , setError] = useState(null)
     
     useEffect(()=>{
         
         const fetchData = async ()=>{
             try {
-                let res = await fetch ('https://65f7f726b4f842e808867f20.mockapi.io/rocket-1/api/blogs')
+                let res = await fetch (url)
                 let data = await res.json()
                 setBlogs(data)
+                setIsLoading(false)
             } catch (error) {
-                console.log(error);   
+                console.log('error'); 
+                setError(error)  
             }
         }
         fetchData()
-    },[])
+    },[url])
 
-  return blogs;
+  return {blogs , error ,isLoading};
 }

@@ -6,11 +6,12 @@ import {
   Outlet
 } from "react-router-dom";
 import './index.css'
-import Header from './components/header/header.jsx';
+import Header from './components/layouts/header/header.jsx';
 import Home from './routes/home.jsx';
-import Footer from './components/footer/footer';
+import Footer from './components/layouts/footer/footer';
 import Posts from './routes/posts';
 import AboutUS from './routes/aboutUS';
+import AplicationError from './components/errors/aplicationError';
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
         </div>
       <Footer />
     </div>,
-    errorElement: <div>error</div>,
+    errorElement: <AplicationError /> ,
 
     children: [
       {

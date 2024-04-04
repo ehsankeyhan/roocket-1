@@ -1,9 +1,11 @@
 import React from 'react'
-import useBlogsData from '../../hooks/useBlogsData'
+import useBlogsData from '../../../hooks/useBlogsData'
+import Alert from '@mui/material/Alert';
+
 
 export default function Footer() {
-
-  const blogs = useBlogsData()
+  const url = 'https://65f7f726b4f842e808867f20.mockapi.io/rocket-1/api/blogs'
+  const {blogs,error,isLoading} = useBlogsData(url)
 
   return (
     <div className='bg-blue-500 text-white w-full'>
@@ -18,7 +20,7 @@ export default function Footer() {
             <div>
                 <p className='font-bold text-xl mb-5'>Latest Blogs</p>
                 <div className='flex-col flex gap-y-1 text-sm'>
-                    {blogs&&(blogs.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0,5).map((item,index)=>(
+                    {!isLoading&&(blogs.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0,5).map((item,index)=>(
                         <p key={index} className='text-neutral-300 hover:text-white cursor-pointer'>{item.title}</p>
                     )))}
                 </div>
@@ -27,6 +29,7 @@ export default function Footer() {
         <div className='text-center py-5 border-t-[1px] border-neutral-200'>
             <p>&copy; {new Date().getFullYear()} Blogs. All rights reserved.</p>
         </div>
+        {error?<Alert severity="error">{error}</Alert>:''}
     </div>
   )
 }

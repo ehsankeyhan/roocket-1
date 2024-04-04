@@ -11,11 +11,13 @@ import 'swiper/css/navigation';
 import BlogsItemLoading from './blogsItemLoading';
 import ShowMore from './showMore';
 import useBlogsData from '../../hooks/useBlogsData';
+import Alert from '@mui/material/Alert';
 
 
 export default function LatestBlogs() {
 
-    const blogs = useBlogsData()
+  const url = 'https://65f7f726b4f842e808867f20.mockapi.io/rocket-1/api/blogs'
+  const {blogs,error,isLoading} = useBlogsData(url)
 
 
   return (
@@ -31,7 +33,7 @@ export default function LatestBlogs() {
         }} 
         modules={[Navigation]} lazy={'true'} spaceBetween={50} navigation slidesPerView={4}>
             
-            {blogs?<>
+            {!isLoading?<>
             {blogs.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0,10).map((item,index)=>(
                 <SwiperSlide key={index} className=''>
                      <BlogsItem blog={item} index={index} key={index} />
@@ -52,6 +54,7 @@ export default function LatestBlogs() {
             }
         </Swiper>
         </div>
+        {error?<Alert severity="error">{error}</Alert>:''}
     </div>
   )
 }
